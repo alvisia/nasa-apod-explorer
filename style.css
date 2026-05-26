@@ -62,7 +62,6 @@ body {
   color: rgb(13, 115, 218);
 }
 
-
 /* Images Container */
 .images-container {
   width: 800px;
@@ -95,8 +94,6 @@ body {
   margin: 10px auto;
   font-size: 24px;
 }
-
-
 
 /* Save Confirmation */
 .save-confirmed {
