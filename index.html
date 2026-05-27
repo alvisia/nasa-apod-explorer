@@ -25,12 +25,16 @@
     <div class="container">
       <!-- Navigation -->
       <div class="navigation-container">
-        <span class="background"></span>
+        <h1 class="main-title">Cosmic Explorer</h1>
         <!-- Results Nav -->
         <span class="navigation-items" id="resultsNav">
-          <h3 class="clickable" onclick="updateDom('favorites')">Favorites</h3>
-          <h3>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</h3>
-          <h3 class="clickable" onclick="getNasaPictures()">Load More</h3>
+          <h3 class="clickable nav-btn" onclick="updateDom('favorites')">
+            Favorites
+          </h3>
+          <h3 class="nav-divider">&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</h3>
+          <h3 class="clickable nav-btn" onclick="getNasaPictures()">
+            Load More
+          </h3>
         </span>
         <!-- Favorites Nav -->
         <span class="navigation-items hidden" id="favoritesNav">

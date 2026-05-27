@@ -8,7 +8,7 @@ const loader = document.querySelector(".loader");
 
 // NASA API
 const count = 10;
-const API_KEY = "DEMO_KEY";
+const API_KEY = "DEMO_KEY"; // Replace with DEMO_KEY
 const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=${count}`;
 
 let resultsArray = [];
@@ -46,9 +46,9 @@ function createDOMNodes(page) {
     cardTitle.textContent = result.title;
     // Add to Favorites
     const favoriteBtn = document.createElement("p");
-    favoriteBtn.classList.add("clickable");
+    favoriteBtn.classList.add("clickable", "favorites-btn");
     if (page === "results") {
-      favoriteBtn.textContent = "Add To Favorite";
+      favoriteBtn.textContent = "Add To Favorites";
       favoriteBtn.onclick = () => {
         saveFavorite(result.url);
       };
@@ -60,6 +60,7 @@ function createDOMNodes(page) {
     }
     // Card Text
     const cardText = document.createElement("p");
+    cardText.classList.add("card-text");
     cardText.textContent = result.explanation;
     // Footer Container
     const footer = document.createElement("small");
