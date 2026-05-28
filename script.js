@@ -5,6 +5,7 @@ const favoritesNav = document.getElementById("favoritesNav");
 const imagesContainer = document.querySelector(".images-container");
 const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
+const emptyMessage = document.getElementById("empty-message-container");
 
 // NASA API
 const count = 10;
@@ -48,12 +49,12 @@ function createDOMNodes(page) {
     const favoriteBtn = document.createElement("p");
     favoriteBtn.classList.add("clickable", "favorites-btn");
     if (page === "results") {
-      favoriteBtn.textContent = "Add To Favorites";
+      favoriteBtn.textContent = "Add to Favorites";
       favoriteBtn.onclick = () => {
         saveFavorite(result.url);
       };
     } else {
-      favoriteBtn.textContent = "Remove Favorite";
+      favoriteBtn.textContent = "Remove from Favorites";
       favoriteBtn.onclick = () => {
         removeFavorite(result.url);
       };
@@ -90,7 +91,15 @@ function updateDom(page) {
   if (page === "results") {
     resultsNav.classList.remove("hidden");
     favoritesNav.classList.add("hidden");
-  } else {
+    emptyMessage.classList.add("hidden");
+  }
+  if (page === "favorites") {
+    if (Object.values(favorites).length === 0) {
+      emptyMessage.classList.remove("hidden");
+    } else {
+      emptyMessage.classList.add("hidden");
+    }
+
     favoritesNav.classList.remove("hidden");
     resultsNav.classList.add("hidden");
   }

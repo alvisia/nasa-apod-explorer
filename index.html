@@ -33,15 +33,21 @@
           </h3>
           <h3 class="nav-divider">&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</h3>
           <h3 class="clickable nav-btn" onclick="getNasaPictures()">
-            Load More
+            Explore More
           </h3>
         </span>
         <!-- Favorites Nav -->
         <span class="navigation-items hidden" id="favoritesNav">
-          <h3 class="clickable" onclick="getNasaPictures()">
-            Load More NASA Images
+          <h3 class="clickable nav-btn" onclick="getNasaPictures()">
+            Back to Explore
           </h3>
         </span>
+      </div>
+      <div class="empty-message-container hidden" id="empty-message-container">
+        <h2 class="empty-message-title">No favorites saved yet.</h2>
+        <p class="empty-message-text">
+          Explore NASA images and save your favorites here.
+        </p>
       </div>
       <!-- Images Container -->
       <div class="images-container"></div>
