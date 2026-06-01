@@ -9,7 +9,7 @@ const emptyMessage = document.getElementById("empty-message-container");
 
 // NASA API
 const count = 10;
-const API_KEY = "DEMO_KEY"; // Replace with DEMO_KEY
+const API_KEY = "DEMO_KEY";
 const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=${count}`;
 
 let resultsArray = [];
@@ -65,13 +65,13 @@ function createDOMNodes(page) {
     cardText.textContent = result.explanation;
     // Footer Container
     const footer = document.createElement("small");
-    footer.classList.add("text-muted");
+    footer.classList.add("card-meta");
     // Date
     const date = document.createElement("strong");
     date.textContent = result.date;
     // Copyright
     const copyrightResult =
-      result.copyright === undefined ? "" : result.copyright;
+      result.copyright === undefined ? "" : ` • ${result.copyright}`;
     const copyright = document.createElement("span");
     copyright.textContent = ` ${copyrightResult}`;
     // Append
