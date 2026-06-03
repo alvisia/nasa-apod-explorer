@@ -6,6 +6,7 @@ const imagesContainer = document.querySelector(".images-container");
 const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
 const emptyMessage = document.getElementById("empty-message-container");
+const errorContainer = document.getElementById("error-container");
 
 // NASA API
 const count = 10;
@@ -41,9 +42,11 @@ function createDOMNodes(page) {
 
       link.href = result.url;
       link.title = "View Video";
+      link.target = "_blank";
 
-      link.appendChild(media);
       media.appendChild(playIcon);
+      link.appendChild(media);
+      card.appendChild(link);
     } else if (result.media_type === "image") {
       media = document.createElement("img");
       media.src = result.url;
@@ -53,8 +56,10 @@ function createDOMNodes(page) {
 
       link.href = result.hdurl;
       link.title = "View Full Image";
+      link.target = "_blank";
 
       link.appendChild(media);
+      card.appendChild(link);
     } else {
       media = document.createElement("div");
       media.classList.add("unavailable-media");
@@ -70,8 +75,6 @@ function createDOMNodes(page) {
       media.append(unavailableTitle, unavailableText);
       card.appendChild(media);
     }
-    link.target = "_blank";
-    card.appendChild(link);
 
     // Card Body
     const cardBody = document.createElement("div");
@@ -144,6 +147,8 @@ function updateDom(page) {
 
 // Get 10 images from NASA API
 async function getNasaPictures() {
+  errorContainer.classList.add("hidden");
+  imagesContainer.classList.remove("hidden");
   // Show Loader
   loader.classList.remove("hidden");
   try {
@@ -151,8 +156,9 @@ async function getNasaPictures() {
     resultsArray = response.data;
     updateDom("results");
   } catch (error) {
-    console.error(error);
-    alert(error);
+    errorContainer.classList.remove("hidden");
+    loader.classList.add("hidden");
+    imagesContainer.classList.add("hidden");
   }
 }
 

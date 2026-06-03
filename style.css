@@ -108,6 +108,22 @@ body {
   font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
+.error-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40vh;
+}
+
+.error-message {
+  color: #f9fafb;
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+}
+
 /* Images Container */
 .images-container {
   width: min(90%, 800px);
