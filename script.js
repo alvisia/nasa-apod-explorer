@@ -50,11 +50,15 @@ function createDOMNodes(page) {
     } else if (result.media_type === "image") {
       media = document.createElement("img");
       media.src = result.url;
-      media.alt = "NASA Picture of the Day";
+      media.alt = result.title;
       media.loading = "lazy";
       media.classList.add("card-img-top");
 
-      link.href = result.hdurl;
+      if (result.hdurl) {
+        link.href = result.hdurl;
+      } else {
+        link.href = result.url;
+      }
       link.title = "View Full Image";
       link.target = "_blank";
 
