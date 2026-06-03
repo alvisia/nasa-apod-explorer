@@ -27,17 +27,52 @@ function createDOMNodes(page) {
     // Card Container
     const card = document.createElement("div");
     card.classList.add("card");
-    // Link
+
+    // Card Image or Video
     const link = document.createElement("a");
-    link.href = result.hdurl;
-    link.title = "View Full Image";
+    let media;
+
+    if (result.media_type === "video") {
+      media = document.createElement("div");
+      media.classList.add("card-video-top");
+
+      const playIcon = document.createElement("i");
+      playIcon.classList.add("fa-solid", "fa-play");
+
+      link.href = result.url;
+      link.title = "View Video";
+
+      link.appendChild(media);
+      media.appendChild(playIcon);
+    } else if (result.media_type === "image") {
+      media = document.createElement("img");
+      media.src = result.url;
+      media.alt = "NASA Picture of the Day";
+      media.loading = "lazy";
+      media.classList.add("card-img-top");
+
+      link.href = result.hdurl;
+      link.title = "View Full Image";
+
+      link.appendChild(media);
+    } else {
+      media = document.createElement("div");
+      media.classList.add("unavailable-media");
+
+      const unavailableTitle = document.createElement("h2");
+      unavailableTitle.classList.add("unavailable-media-title");
+      unavailableTitle.textContent = "Media Unavailable";
+
+      const unavailableText = document.createElement("p");
+      unavailableText.classList.add("unavailable-media-text");
+      unavailableText.textContent = "This APOD media type is not supported.";
+
+      media.append(unavailableTitle, unavailableText);
+      card.appendChild(media);
+    }
     link.target = "_blank";
-    // Image
-    const image = document.createElement("img");
-    image.src = result.url;
-    image.alt = "NASA Picture of the Day";
-    image.loading = "lazy";
-    image.classList.add("card-img-top");
+    card.appendChild(link);
+
     // Card Body
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -77,8 +112,7 @@ function createDOMNodes(page) {
     // Append
     footer.append(date, copyright);
     cardBody.append(cardTitle, favoriteBtn, cardText, footer);
-    link.appendChild(image);
-    card.append(link, cardBody);
+    card.appendChild(cardBody);
     imagesContainer.appendChild(card);
   });
 }
