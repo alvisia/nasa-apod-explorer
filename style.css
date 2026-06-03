@@ -73,6 +73,12 @@ body {
   color: #38bdf8;
   cursor: pointer;
   user-select: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  margin: 0;
   transition:
     color 0.25s ease,
     background-color 0.25s ease,
@@ -80,19 +86,19 @@ body {
     transform 0.25s ease;
 }
 
-.nav-btn {
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  margin: 0;
-}
-
-.nav-btn:hover {
+.clickable:hover {
   color: #2b89d6;
   background-color: rgba(17, 24, 39, 0.15);
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
 }
 
-.nav-btn:active {
+.clickable:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+.clickable:active {
   transform: scale(97%);
 }
 
@@ -214,7 +220,7 @@ body {
   color: #f9fafb;
 }
 
-.favorites-btn {
+.add-favorites-btn {
   display: inline-block;
   padding: 0 0.5rem;
   margin-bottom: 2.5rem;
@@ -227,12 +233,12 @@ body {
     transform 0.25s ease;
 }
 
-.favorites-btn:hover {
+.add-favorites-btn:hover {
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
   color: #2b89d6;
 }
 
-.favorites-btn:active {
+.add-favorites-btn:active {
   transform: scale(97%);
 }
 

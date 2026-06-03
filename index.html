@@ -41,19 +41,17 @@
         <h1 class="main-title">Cosmic Explorer</h1>
         <!-- Results Nav -->
         <span class="navigation-items" id="resultsNav">
-          <h3 class="clickable nav-btn" onclick="updateDom('favorites')">
-            Favorites
-          </h3>
-          <h3 class="nav-divider">&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</h3>
-          <h3 class="clickable nav-btn" onclick="getNasaPictures()">
-            Explore More
-          </h3>
+          <button class="clickable" id="favorites-btn">Favorites</button>
+
+          <p class="nav-divider">&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</p>
+
+          <button class="clickable" id="explore-btn">Explore More</button>
         </span>
         <!-- Favorites Nav -->
         <span class="navigation-items hidden" id="favoritesNav">
-          <h3 class="clickable nav-btn" onclick="getNasaPictures()">
+          <button class="clickable" id="back-to-explore-btn">
             Back to Explore
-          </h3>
+          </button>
         </span>
       </div>
       <div class="empty-message-container hidden" id="empty-message-container">

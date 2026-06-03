@@ -2,6 +2,9 @@
 
 const resultsNav = document.getElementById("resultsNav");
 const favoritesNav = document.getElementById("favoritesNav");
+const favoritesNavBtn = document.getElementById("favorites-btn");
+const exploreNavBtn = document.getElementById("explore-btn");
+const backToExploreNavBtn = document.getElementById("back-to-explore-btn");
 const imagesContainer = document.querySelector(".images-container");
 const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
@@ -88,16 +91,16 @@ function createDOMNodes(page) {
     cardTitle.classList.add("card-title");
     cardTitle.textContent = result.title;
     // Add to Favorites
-    const favoriteBtn = document.createElement("p");
-    favoriteBtn.classList.add("clickable", "favorites-btn");
+    const addFavoriteBtn = document.createElement("button");
+    addFavoriteBtn.classList.add("clickable", "add-favorites-btn");
     if (page === "results") {
-      favoriteBtn.textContent = "Add to Favorites";
-      favoriteBtn.onclick = () => {
+      addFavoriteBtn.textContent = "Add to Favorites";
+      addFavoriteBtn.onclick = () => {
         saveFavorite(result.url);
       };
     } else {
-      favoriteBtn.textContent = "Remove from Favorites";
-      favoriteBtn.onclick = () => {
+      addFavoriteBtn.textContent = "Remove from Favorites";
+      addFavoriteBtn.onclick = () => {
         removeFavorite(result.url);
       };
     }
@@ -118,7 +121,7 @@ function createDOMNodes(page) {
     copyright.textContent = ` ${copyrightResult}`;
     // Append
     footer.append(date, copyright);
-    cardBody.append(cardTitle, favoriteBtn, cardText, footer);
+    cardBody.append(cardTitle, addFavoriteBtn, cardText, footer);
     card.appendChild(cardBody);
     imagesContainer.appendChild(card);
   });
@@ -140,7 +143,7 @@ function updateDom(page) {
     } else {
       emptyMessage.classList.add("hidden");
     }
-
+    errorContainer.classList.add("hidden");
     favoritesNav.classList.remove("hidden");
     resultsNav.classList.add("hidden");
   }
@@ -153,6 +156,9 @@ function updateDom(page) {
 async function getNasaPictures() {
   errorContainer.classList.add("hidden");
   imagesContainer.classList.remove("hidden");
+  emptyMessage.classList.add("hidden");
+  resultsNav.classList.remove("hidden");
+  favoritesNav.classList.add("hidden");
   // Show Loader
   loader.classList.remove("hidden");
   try {
@@ -192,6 +198,15 @@ function removeFavorite(itemUrl) {
     updateDom("favorites");
   }
 }
+
+// Event Listeners
+favoritesNavBtn.addEventListener("click", () => {
+  updateDom("favorites");
+});
+
+exploreNavBtn.addEventListener("click", getNasaPictures);
+
+backToExploreNavBtn.addEventListener("click", getNasaPictures);
 
 // On Load
 getNasaPictures();
