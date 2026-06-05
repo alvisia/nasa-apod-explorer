@@ -10,6 +10,8 @@ const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
 const emptyMessage = document.getElementById("empty-message-container");
 const errorContainer = document.getElementById("error-container");
+const datePicker = document.getElementById("input-date");
+const searchDateBtn = document.getElementById("search-date");
 
 // NASA API
 const count = 10;
@@ -18,6 +20,37 @@ const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=${c
 
 let resultsArray = [];
 let favorites = {};
+
+// Date Config
+const currentDate = new Date().toISOString().split("T")[0];
+datePicker.setAttribute("max", currentDate);
+
+async function searchByDate() {
+  const selectedDate = datePicker.value;
+
+  if (selectedDate === "") {
+    return;
+  }
+
+  errorContainer.classList.add("hidden");
+  imagesContainer.classList.remove("hidden");
+  emptyMessage.classList.add("hidden");
+  resultsNav.classList.remove("hidden");
+  favoritesNav.classList.add("hidden");
+
+  try {
+    loader.classList.remove("hidden");
+    const dateApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${selectedDate}`;
+    const dateResponse = await axios.get(dateApiUrl);
+    const dateArray = [dateResponse.data];
+    resultsArray = dateArray;
+    updateDom("results");
+  } catch (error) {
+    errorContainer.classList.remove("hidden");
+    loader.classList.add("hidden");
+    imagesContainer.classList.add("hidden");
+  }
+}
 
 function showContent() {
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -207,6 +240,8 @@ favoritesNavBtn.addEventListener("click", () => {
 exploreNavBtn.addEventListener("click", getNasaPictures);
 
 backToExploreNavBtn.addEventListener("click", getNasaPictures);
+
+searchDateBtn.addEventListener("click", searchByDate);
 
 // On Load
 getNasaPictures();
