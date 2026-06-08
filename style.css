@@ -86,7 +86,7 @@ body {
     transform 0.25s ease;
 }
 
-.clickable:hover {
+.clickable:not(:disabled):hover {
   color: #2b89d6;
   background-color: rgba(17, 24, 39, 0.15);
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
@@ -100,8 +100,14 @@ body {
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
 }
 
-.clickable:active {
+.clickable:not(:disabled):active {
   transform: scale(97%);
+}
+
+.clickable:disabled {
+  color: #424242;
+  opacity: 0.75;
+  cursor: not-allowed;
 }
 
 .nav-divider {
@@ -151,13 +157,22 @@ body {
   cursor: pointer;
 }
 
-.search-date:hover {
+.search-date:not(:disabled):hover {
   background-color: rgba(56, 189, 248, 0.12);
   color: #38bdf8;
 }
 
-.search-date:active {
+.search-date:not(:disabled):active {
   transform: scale(97%);
+}
+
+.search-date:disabled {
+  background-color: rgba(15, 23, 42, 0.35);
+  color: #64748b;
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-color: rgba(148, 163, 184, 0.35);
 }
 
 .error-container {

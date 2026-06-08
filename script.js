@@ -2,9 +2,9 @@
 
 const resultsNav = document.getElementById("resultsNav");
 const favoritesNav = document.getElementById("favoritesNav");
-const favoritesNavBtn = document.getElementById("favorites-btn");
-const exploreNavBtn = document.getElementById("explore-btn");
-const backToExploreNavBtn = document.getElementById("back-to-explore-btn");
+const favoritesBtn = document.getElementById("favorites-btn");
+const exploreBtn = document.getElementById("explore-btn");
+const backToExploreBtn = document.getElementById("back-to-explore-btn");
 const imagesContainer = document.querySelector(".images-container");
 const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
@@ -32,23 +32,17 @@ async function searchByDate() {
     return;
   }
 
-  errorContainer.classList.add("hidden");
-  imagesContainer.classList.remove("hidden");
-  emptyMessage.classList.add("hidden");
-  resultsNav.classList.remove("hidden");
-  favoritesNav.classList.add("hidden");
-
+  startLoading();
   try {
-    loader.classList.remove("hidden");
     const dateApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${selectedDate}`;
     const dateResponse = await axios.get(dateApiUrl);
     const dateArray = [dateResponse.data];
     resultsArray = dateArray;
     updateDom("results");
   } catch (error) {
-    errorContainer.classList.remove("hidden");
-    loader.classList.add("hidden");
-    imagesContainer.classList.add("hidden");
+    showErrorState();
+  } finally {
+    stopLoading();
   }
 }
 
@@ -185,23 +179,44 @@ function updateDom(page) {
   showContent();
 }
 
-// Get 10 images from NASA API
-async function getNasaPictures() {
+function startLoading() {
   errorContainer.classList.add("hidden");
   imagesContainer.classList.remove("hidden");
   emptyMessage.classList.add("hidden");
   resultsNav.classList.remove("hidden");
   favoritesNav.classList.add("hidden");
-  // Show Loader
   loader.classList.remove("hidden");
+
+  favoritesBtn.disabled = true;
+  exploreBtn.disabled = true;
+  backToExploreBtn.disabled = true;
+  searchDateBtn.disabled = true;
+}
+
+function stopLoading() {
+  loader.classList.add("hidden");
+  favoritesBtn.disabled = false;
+  exploreBtn.disabled = false;
+  backToExploreBtn.disabled = false;
+  searchDateBtn.disabled = false;
+}
+
+function showErrorState() {
+  errorContainer.classList.remove("hidden");
+  imagesContainer.classList.add("hidden");
+}
+
+// Get 10 images from NASA API
+async function getNasaPictures() {
+  startLoading();
   try {
     const response = await axios.get(apiUrl);
     resultsArray = response.data;
     updateDom("results");
   } catch (error) {
-    errorContainer.classList.remove("hidden");
-    loader.classList.add("hidden");
-    imagesContainer.classList.add("hidden");
+    showErrorState();
+  } finally {
+    stopLoading();
   }
 }
 
@@ -233,13 +248,13 @@ function removeFavorite(itemUrl) {
 }
 
 // Event Listeners
-favoritesNavBtn.addEventListener("click", () => {
+favoritesBtn.addEventListener("click", () => {
   updateDom("favorites");
 });
 
-exploreNavBtn.addEventListener("click", getNasaPictures);
+exploreBtn.addEventListener("click", getNasaPictures);
 
-backToExploreNavBtn.addEventListener("click", getNasaPictures);
+backToExploreBtn.addEventListener("click", getNasaPictures);
 
 searchDateBtn.addEventListener("click", searchByDate);
 
