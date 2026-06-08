@@ -26,7 +26,9 @@
   <body>
     <!-- Error Message -->
     <div class="error-container hidden" id="error-container">
-      <p class="error-message">Unable to load NASA images. Please try again.</p>
+      <p class="error-message" role="alert">
+        Unable to load NASA images. Please try again.
+      </p>
     </div>
     <!-- Loader -->
     <div class="loader hidden">
@@ -38,26 +40,33 @@
       <div class="navigation-container">
         <h1 class="main-title">Cosmic Explorer</h1>
         <!-- Results Nav -->
-        <span class="navigation-items" id="resultsNav">
+        <div class="navigation-items" id="resultsNav">
           <button class="clickable" id="favorites-btn">Favorites</button>
 
-          <p class="nav-divider">&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</p>
+          <p class="nav-divider" aria-hidden="true">
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+          </p>
 
           <button class="clickable" id="explore-btn">Explore More</button>
-        </span>
+        </div>
         <div class="search-date-container">
-          <input type="date" class="input-date" id="input-date" />
+          <input
+            type="date"
+            class="input-date"
+            id="input-date"
+            aria-label="Search by date"
+          />
           <button class="search-date" id="search-date" title="Search Date">
             Search
           </button>
         </div>
 
         <!-- Favorites Nav -->
-        <span class="navigation-items hidden" id="favoritesNav">
+        <div class="navigation-items hidden" id="favoritesNav">
           <button class="clickable" id="back-to-explore-btn">
             Back to Explore
           </button>
-        </span>
+        </div>
       </div>
       <div class="empty-message-container hidden" id="empty-message-container">
         <h2 class="empty-message-title">No favorites saved yet.</h2>
@@ -69,7 +78,7 @@
       <div class="images-container"></div>
     </div>
     <!-- Save Confirmation -->
-    <div class="save-confirmed" hidden>
+    <div class="save-confirmed" aria-live="polite" hidden>
       <p>Saved to Favorites</p>
     </div>
   </body>

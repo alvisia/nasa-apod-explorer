@@ -10,6 +10,7 @@ const saveConfirmed = document.querySelector(".save-confirmed");
 const loader = document.querySelector(".loader");
 const emptyMessage = document.getElementById("empty-message-container");
 const errorContainer = document.getElementById("error-container");
+const dateSearchContainer = document.querySelector(".search-date-container");
 const datePicker = document.getElementById("input-date");
 const searchDateBtn = document.getElementById("search-date");
 
@@ -71,7 +72,8 @@ function createDOMNodes(page) {
       playIcon.classList.add("fa-solid", "fa-play");
 
       link.href = result.url;
-      link.title = "View Video";
+      link.ariaLabel = `View video for ${result.title}`;
+      link.title = `View video: ${result.title}`;
       link.target = "_blank";
 
       media.appendChild(playIcon);
@@ -89,7 +91,8 @@ function createDOMNodes(page) {
       } else {
         link.href = result.url;
       }
-      link.title = "View Full Image";
+      link.ariaLabel = `View full image for ${result.title}`;
+      link.title = `View full image: ${result.title}`;
       link.target = "_blank";
 
       link.appendChild(media);
@@ -163,6 +166,7 @@ function updateDom(page) {
     resultsNav.classList.remove("hidden");
     favoritesNav.classList.add("hidden");
     emptyMessage.classList.add("hidden");
+    dateSearchContainer.classList.remove("hidden");
   }
   if (page === "favorites") {
     if (Object.values(favorites).length === 0) {
@@ -173,6 +177,7 @@ function updateDom(page) {
     errorContainer.classList.add("hidden");
     favoritesNav.classList.remove("hidden");
     resultsNav.classList.add("hidden");
+    dateSearchContainer.classList.add("hidden");
   }
   imagesContainer.textContent = "";
   createDOMNodes(page);
