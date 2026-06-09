@@ -119,6 +119,12 @@ body {
   font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
+.subtitle {
+  text-align: center;
+  color: #d6d9e0;
+  margin: 0.5rem 0 1.5rem;
+}
+
 /* Date Search */
 .search-date-container {
   display: flex;
@@ -193,7 +199,7 @@ body {
 /* Cards */
 .cards-container {
   width: min(90%, 800px);
-  margin-top: 15rem;
+  margin-top: 18rem;
 }
 
 .card {
