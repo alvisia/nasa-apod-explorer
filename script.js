@@ -14,6 +14,7 @@ const errorContainer = document.getElementById("error-container");
 const dateSearchContainer = document.querySelector(".search-date-container");
 const datePicker = document.getElementById("input-date");
 const searchDateBtn = document.getElementById("search-date");
+const siteFooter = document.querySelector(".site-footer");
 
 // NASA API Config
 const count = 10;
@@ -175,12 +176,15 @@ function renderPage(page) {
     favoritesNav.classList.add("hidden");
     emptyMessage.classList.add("hidden");
     dateSearchContainer.classList.remove("hidden");
+    siteFooter.classList.remove("hidden");
   }
   if (page === "favorites") {
     if (Object.values(favorites).length === 0) {
       emptyMessage.classList.remove("hidden");
+      siteFooter.classList.add("hidden");
     } else {
       emptyMessage.classList.add("hidden");
+      siteFooter.classList.remove("hidden");
     }
     errorContainer.classList.add("hidden");
     favoritesNav.classList.remove("hidden");
@@ -220,6 +224,7 @@ function stopLoading() {
 function showErrorState() {
   errorContainer.classList.remove("hidden");
   cardsContainer.classList.add("hidden");
+  siteFooter.classList.add("hidden");
 }
 
 // Fetch random APOD results
