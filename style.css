@@ -4,17 +4,9 @@ html {
 
 body {
   margin: 0;
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
   overflow-x: hidden;
   font-family: Verdana, sans-serif;
   font-size: 1rem;
@@ -48,17 +40,9 @@ body {
   top: 0;
   width: 100%;
   padding: 1.5rem 0 1.25rem;
-  background: #000000; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #434343, #000000);
   box-shadow: 0 8px 5px rgba(0, 0, 0, 0.25);
   z-index: 10;
 }
@@ -122,6 +106,7 @@ body {
   font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
+/* Date Search */
 .search-date-container {
   display: flex;
   justify-content: center;
@@ -175,6 +160,7 @@ body {
   border-color: rgba(148, 163, 184, 0.35);
 }
 
+/* Error State */
 .error-container {
   display: flex;
   justify-content: center;
@@ -191,8 +177,8 @@ body {
   font-size: 1.5rem;
 }
 
-/* Images Container */
-.images-container {
+/* Cards */
+.cards-container {
   width: min(90%, 800px);
   margin-top: 15rem;
 }
@@ -223,14 +209,18 @@ body {
   text-decoration: none;
 }
 
+.card-video-top,
+.unavailable-media {
+  width: 100%;
+  height: 400px;
+  border-radius: 6px 6px 0 0;
+}
+
 .card-video-top {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #000000;
-  width: 100%;
-  height: 400px;
-  border-radius: 6px 6px 0 0;
 }
 
 .fa-play {
@@ -243,21 +233,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #152331; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #000000,
-    #152331
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #000000,
-    #152331
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  width: 100%;
-  height: 400px;
-  border-radius: 6px 6px 0 0;
+  background: #152331;
+  background: -webkit-linear-gradient(to right, #000000, #152331);
+  background: linear-gradient(to right, #000000, #152331);
 }
 
 .unavailable-media-title {
@@ -303,6 +281,21 @@ body {
   transform: scale(97%);
 }
 
+.card-text {
+  color: #d6d9e0;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  margin-top: 0;
+}
+
+.card-meta {
+  display: inline-block;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 1rem;
+}
+
+/* Empty Favorites State */
 .empty-message-container {
   position: absolute;
   top: 30vh;
@@ -326,20 +319,6 @@ body {
   color: #d6d9e0;
 }
 
-.card-text {
-  color: #d6d9e0;
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  margin-top: 0;
-}
-
-.card-meta {
-  display: inline-block;
-  color: #94a3b8;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.5rem 1rem;
-}
-
 /* Save Confirmation */
 .save-confirmed {
   background: #111827;
@@ -355,12 +334,12 @@ body {
   right: 50px;
 }
 
-/* Hidden */
+/* Utility */
 .hidden {
   display: none;
 }
 
-/* Large Smartphone (Vertical) */
+/* Large Smartphone */
 @media screen and (max-width: 800px) {
   body {
     font-size: 0.95rem;

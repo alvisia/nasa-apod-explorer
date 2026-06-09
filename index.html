@@ -17,9 +17,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- ZTM Favicon -->
-    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
-    <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/axios@1.13.6/dist/axios.min.js"></script>
     <script defer src="script.js"></script>
   </head>
@@ -30,16 +27,19 @@
         Unable to load NASA images. Please try again.
       </p>
     </div>
+
     <!-- Loader -->
     <div class="loader hidden">
       <img src="rocket.svg" alt="Rocket Loading Animation" />
     </div>
-    <!-- Container -->
+
+    <!-- Main App Container -->
     <div class="container">
       <!-- Navigation -->
       <div class="navigation-container">
         <h1 class="main-title">Cosmic Explorer</h1>
-        <!-- Results Nav -->
+
+        <!-- Results Navigation -->
         <div class="navigation-items" id="resultsNav">
           <button class="clickable" id="favorites-btn">Favorites</button>
 
@@ -49,6 +49,8 @@
 
           <button class="clickable" id="explore-btn">Explore More</button>
         </div>
+
+        <!-- Date Search -->
         <div class="search-date-container">
           <input
             type="date"
@@ -61,22 +63,26 @@
           </button>
         </div>
 
-        <!-- Favorites Nav -->
+        <!-- Favorites Navigation -->
         <div class="navigation-items hidden" id="favoritesNav">
           <button class="clickable" id="back-to-explore-btn">
             Back to Explore
           </button>
         </div>
       </div>
+
+      <!-- Empty Favorites Message -->
       <div class="empty-message-container hidden" id="empty-message-container">
         <h2 class="empty-message-title">No favorites saved yet.</h2>
         <p class="empty-message-text">
           Explore NASA images and save your favorites here.
         </p>
       </div>
-      <!-- Images Container -->
-      <div class="images-container"></div>
+
+      <!-- Cards Container -->
+      <div class="cards-container"></div>
     </div>
+
     <!-- Save Confirmation -->
     <div class="save-confirmed" aria-live="polite" hidden>
       <p>Saved to Favorites</p>
