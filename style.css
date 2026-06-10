@@ -93,7 +93,8 @@ body {
 .input-date:focus-visible,
 .search-date:focus-visible,
 .apod-link:focus-visible,
-.sort-favorites:focus-visible {
+.sort-favorites:focus-visible,
+.retry-btn:focus-visible {
   outline: 2px solid #38bdf8;
   outline-offset: 4px;
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
@@ -161,6 +162,10 @@ body {
   box-shadow: 0 8px 5px rgba(0, 0, 0, 0.25);
   padding: 0.35rem 0.5rem;
   cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .search-date:not(:disabled):hover {
@@ -201,8 +206,11 @@ body {
 /* Error State */
 .error-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 40vh;
+  gap: 1rem;
 }
 
 .error-message {
@@ -212,7 +220,40 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
   padding: 1rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.retry-btn {
+  font-size: 1.2rem;
+  background-color: #111827;
+  color: #e5e7eb;
+  border: 1px solid rgba(56, 189, 248, 0.65);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.retry-btn:not(:disabled):hover {
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+
+.retry-btn:not(:disabled):active {
+  transform: scale(97%);
+}
+
+.retry-btn:disabled {
+  background-color: rgba(15, 23, 42, 0.35);
+  color: #64748b;
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-color: rgba(148, 163, 184, 0.35);
 }
 
 /* Cards */

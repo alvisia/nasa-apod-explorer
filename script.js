@@ -19,9 +19,10 @@ const sortFavoritesContainer = document.querySelector(
   ".sort-favorites-container",
 );
 const sortFavoritesInput = document.getElementById("sort-favorites");
+const retryBtn = document.getElementById("retry-btn");
 
 // NASA API Config
-const count = 10;
+const count = 5;
 const API_KEY = "DEMO_KEY";
 const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=${count}`;
 
@@ -236,6 +237,7 @@ function startLoading() {
   exploreBtn.disabled = true;
   backToExploreBtn.disabled = true;
   searchDateBtn.disabled = true;
+  retryBtn.disabled = true;
 }
 
 function stopLoading() {
@@ -245,6 +247,7 @@ function stopLoading() {
   exploreBtn.disabled = false;
   backToExploreBtn.disabled = false;
   searchDateBtn.disabled = false;
+  retryBtn.disabled = false;
 }
 
 function showErrorState() {
@@ -307,6 +310,8 @@ searchDateBtn.addEventListener("click", searchByDate);
 sortFavoritesInput.addEventListener("change", () => {
   renderPage("favorites");
 });
+
+retryBtn.addEventListener("click", getNasaPictures);
 
 // Initial Load
 getNasaPictures();
