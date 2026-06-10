@@ -92,7 +92,8 @@ body {
 .clickable:focus-visible,
 .input-date:focus-visible,
 .search-date:focus-visible,
-.apod-link:focus-visible {
+.apod-link:focus-visible,
+.sort-favorites:focus-visible {
   outline: 2px solid #38bdf8;
   outline-offset: 4px;
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
@@ -178,6 +179,23 @@ body {
   cursor: not-allowed;
   box-shadow: none;
   border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* Sort Favorites */
+.sort-favorites-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.sort-favorites {
+  background-color: #111827;
+  color: #e5e7eb;
+  border: 1px solid rgba(56, 189, 248, 0.65);
+  border-radius: 6px;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.25);
+  padding: 0.35rem 0.5rem;
 }
 
 /* Error State */

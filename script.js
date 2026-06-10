@@ -15,6 +15,10 @@ const dateSearchContainer = document.querySelector(".search-date-container");
 const datePicker = document.getElementById("input-date");
 const searchDateBtn = document.getElementById("search-date");
 const siteFooter = document.querySelector(".site-footer");
+const sortFavoritesContainer = document.querySelector(
+  ".sort-favorites-container",
+);
+const sortFavoritesInput = document.getElementById("sort-favorites");
 
 // NASA API Config
 const count = 10;
@@ -51,6 +55,25 @@ async function searchByDate() {
   } finally {
     stopLoading();
   }
+}
+
+function sortFavorites(value) {
+  if (localStorage.getItem("nasaFavorites")) {
+    favorites = JSON.parse(localStorage.getItem("nasaFavorites"));
+  }
+  const favoritesArray = Object.values(favorites);
+  if (value === "newest-first") {
+    favoritesArray.sort((favoriteA, favoriteB) => {
+      return new Date(favoriteB.date) - new Date(favoriteA.date);
+    });
+  }
+  if (value === "oldest-first") {
+    favoritesArray.sort((favoriteA, favoriteB) => {
+      return new Date(favoriteA.date) - new Date(favoriteB.date);
+    });
+  }
+
+  return favoritesArray;
 }
 
 // Reset scroll position and hide loader after content renders
@@ -158,7 +181,7 @@ function createCard(result, page) {
 // Choose the correct data source and render each card
 function renderCards(page) {
   const currentArray =
-    page === "results" ? resultsArray : Object.values(favorites);
+    page === "results" ? resultsArray : sortFavorites(sortFavoritesInput.value);
 
   currentArray.forEach((result) => {
     createCard(result, page);
@@ -170,21 +193,23 @@ function renderPage(page) {
   if (localStorage.getItem("nasaFavorites")) {
     favorites = JSON.parse(localStorage.getItem("nasaFavorites"));
   }
-
   if (page === "results") {
     resultsNav.classList.remove("hidden");
     favoritesNav.classList.add("hidden");
     emptyMessage.classList.add("hidden");
     dateSearchContainer.classList.remove("hidden");
     siteFooter.classList.remove("hidden");
+    sortFavoritesContainer.classList.add("hidden");
   }
   if (page === "favorites") {
     if (Object.values(favorites).length === 0) {
       emptyMessage.classList.remove("hidden");
       siteFooter.classList.add("hidden");
+      sortFavoritesContainer.classList.add("hidden");
     } else {
       emptyMessage.classList.add("hidden");
       siteFooter.classList.remove("hidden");
+      sortFavoritesContainer.classList.remove("hidden");
     }
     errorContainer.classList.add("hidden");
     favoritesNav.classList.remove("hidden");
@@ -205,6 +230,7 @@ function startLoading() {
   resultsNav.classList.remove("hidden");
   favoritesNav.classList.add("hidden");
   loader.classList.remove("hidden");
+  sortFavoritesContainer.classList.add("hidden");
 
   favoritesBtn.disabled = true;
   exploreBtn.disabled = true;
@@ -277,6 +303,10 @@ exploreBtn.addEventListener("click", getNasaPictures);
 backToExploreBtn.addEventListener("click", getNasaPictures);
 
 searchDateBtn.addEventListener("click", searchByDate);
+
+sortFavoritesInput.addEventListener("change", () => {
+  renderPage("favorites");
+});
 
 // Initial Load
 getNasaPictures();
